@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoAgri - Help & Support</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f4f6f8; color: #222222; line-height: 1.5; }
+        .top-bar { background-color: #1a365d; color: #ffffff; padding: 6px 5%; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
+        .top-bar select { background: #ffffff; border: 1px solid #ccc; padding: 2px 5px; font-size: 12px; }
+        header { background-color: #ffffff; border-bottom: 4px solid #ff9933; padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; }
+        .brand-container { display: flex; align-items: center; gap: 15px; }
+        .emblem-placeholder { width: 45px; height: 45px; background-color: #e2e8f0; border: 1px solid #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #475569; text-align: center; }
+        .brand-titles h1 { color: #138808; font-size: 24px; font-weight: 700; }
+        .brand-titles p { color: #475569; font-size: 12px; }
+        nav { background-color: #0f172a; padding: 0 5%; }
+        nav ul { list-style: none; display: flex; }
+        nav li a { display: block; color: #ffffff; text-decoration: none; padding: 12px 20px; font-size: 14px; border-right: 1px solid #334155; }
+        nav li.active a { background-color: #138808; font-weight: bold; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+        .sidebar { display: flex; flex-direction: column; gap: 15px; }
+        .panel { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 2px; }
+        .panel-header { background-color: #f1f5f9; border-bottom: 1px solid #cbd5e1; padding: 10px 15px; font-size: 14px; font-weight: 700; color: #0f172a; }
+        .panel-body { padding: 15px; }
+        .main-content { display: flex; flex-direction: column; gap: 20px; }
+        .data-status-bar { background-color: #e0f2fe; border: 1px solid #0284c7; padding: 10px 15px; font-size: 12px; color: #0369a1; display: flex; justify-content: space-between; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #334155; }
+        .form-group select, .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #94a3b8; border-radius: 2px; font-size: 13px; }
+        .btn-submit { width: 100%; background-color: #138808; color: #ffffff; border: none; padding: 10px; font-weight: bold; font-size: 14px; cursor: pointer; }
+        .faq-item { background: #ffffff; border: 1px solid #cbd5e1; padding: 12px 15px; margin-bottom: 10px; border-left: 3px solid #1a365d; }
+        .faq-title { font-weight: bold; font-size: 13px; color: #0f172a; margin-bottom: 4px; }
+        .faq-desc { font-size: 12px; color: #475569; }
+        footer { background-color: #0f172a; color: #94a3b8; text-align: center; padding: 20px; font-size: 12px; margin-top: 40px; border-top: 3px solid #138808; }
+        footer p { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Ministry of Agriculture & Farmers Welfare | Government of India</span>
+        <div>
+            <label for="lang-select">Language: </label>
+            <select id="lang-select">
+                <option>English</option>
+                <option>हिन्दी (Hindi)</option>
+            </select>
+        </div>
+    </div>
+
+    <header>
+        <div class="brand-container">
+            <div class="emblem-placeholder">GOVT EMBLEM</div>
+            <div class="brand-titles">
+                <h1>GeoAgri</h1>
+                <p>National AI-Powered Precision Agricultural Advisory Portal</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+    	<ul>
+           <li><a href="index.html">Farmer Dashboard</a></li>
+           <li><a href="soil-health.html">Soil Health Data</a></li>
+           <li><a href="satellite-weather.html">Satellite & Weather Maps</a></li>
+           <li><a href="market-prices.html">Market Prices (e-NAM)</a></li>
+           <li><a href="help-support.html">Help & Support</a></li>
+       </ul>
+    </nav>
+
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="panel">
+                <div class="panel-header">Kisan Call Centre (KCC)</div>
+                <div class="panel-body" style="font-size: 13px;">
+                    <p style="margin-bottom: 8px;"><strong>Toll-Free Helpline:</strong><br><span style="color: #138808; font-weight: bold; font-size: 16px;">1800-180-1551</span></p>
+                    <p style="margin-bottom: 8px;"><strong>Operational Hours:</strong><br>06:00 AM to 10:00 PM (All 7 Days)</p>
+                    <p><strong>SMS Support:</strong><br>Send "GEO [Query]" to 51969</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="data-status-bar">
+                <span><strong>Grievance Portal:</strong> Integrated with CPGRAMS</span>
+                <span><strong>Response Time:</strong> Within 24-48 Hours</span>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">Frequently Asked Questions (FAQ)</div>
+                <div class="panel-body">
+                    <div class="faq-item">
+                        <div class="faq-title">Q: How often is satellite data refreshed for my farm?</div>
+                        <div class="faq-desc">A: Satellite imagery (NDVI index) is updated every 5 days using ISRO EOS-04 and Sentinel data passes.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-title">Q: How do I link my Soil Health Card to GeoAgri?</div>
+                        <div class="faq-desc">A: Enter your 12-digit SHC Number in the Soil Health tab sidebar to auto-sync your soil parameters.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-title">Q: Are the market prices updated in real-time?</div>
+                        <div class="faq-desc">A: Yes, e-NAM market rates update live during official APMC Mandi operating hours across states.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">Submit an Advisory Query or Grievance</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="farmer-id">Aadhaar / Farmer Registration ID</label>
+                            <input type="text" id="farmer-id" placeholder="12-digit Registration ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category">
+                                <option>Crop Advisory Discrepancy</option>
+                                <option>Soil Card Sync Issue</option>
+                                <option>Technical Portal Bug</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Describe your issue in detail</label>
+                            <textarea id="message" rows="4" style="width: 100%; padding: 8px; border: 1px solid #94a3b8; font-size: 13px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit Ticket</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>GeoAgri Portal - Kisan Call Centre & Grievance Redressal System</p>
+        <p>&copy; Government of India. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

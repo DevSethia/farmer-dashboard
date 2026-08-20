@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoAgri - AI Agricultural Advisory Portal</title>
+    <style>
+        /* --- GLOBAL RESETS & GOVT THEME STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #222222;
+            line-height: 1.5;
+        }
+
+        /* --- TOP GOVT HEADER --- */
+        .top-bar {
+            background-color: #1a365d; /* Dark Navy Blue */
+            color: #ffffff;
+            padding: 6px 5%;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar select {
+            background: #ffffff;
+            border: 1px solid #ccc;
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+        /* --- MAIN HEADER --- */
+        header {
+            background-color: #ffffff;
+            border-bottom: 4px solid #ff9933; /* Saffron Accent */
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .emblem-placeholder {
+            width: 45px;
+            height: 45px;
+            background-color: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #475569;
+            text-align: center;
+        }
+
+        .brand-titles h1 {
+            color: #138808; /* India Green */
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .brand-titles p {
+            color: #475569;
+            font-size: 12px;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        nav {
+            background-color: #0f172a;
+            padding: 0 5%;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-right: 1px solid #334155;
+        }
+
+        nav li.active a {
+            background-color: #138808;
+            font-weight: bold;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        /* --- SIDEBAR PANEL --- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 2px;
+        }
+
+        .panel-header {
+            background-color: #f1f5f9;
+            border-bottom: 1px solid #cbd5e1;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #334155;
+        }
+
+        .form-group select, 
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #94a3b8;
+            border-radius: 2px;
+            font-size: 13px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #138808;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* --- MAIN CONTENT / DASHBOARD --- */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Data Source Indicator Banner */
+        .data-status-bar {
+            background-color: #e0f2fe;
+            border: 1px solid #0284c7;
+            padding: 10px 15px;
+            font-size: 12px;
+            color: #0369a1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Grid for Recommendation Cards */
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-top: 3px solid #138808;
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0f172a;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 6px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .card-data-row:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            color: #64748b;
+        }
+
+        .data-value {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .status-tag {
+            background-color: #dcfce7;
+            color: #15803d;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        /* Details List Box */
+        .advisory-box {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 15px;
+        }
+
+        .advisory-box h3 {
+            font-size: 15px;
+            color: #0f172a;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ff9933;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .advisory-list {
+            list-style-type: square;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #334155;
+        }
+
+        .advisory-list li {
+            margin-bottom: 8px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            margin-top: 40px;
+            border-top: 3px solid #138808;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP GOVERNMENT UTILITY BAR -->
+    <div class="top-bar">
+        <span>Ministry of Agriculture & Farmers Welfare | Government of India</span>
+        <div>
+            <label for="lang-select">Language: </label>
+            <select id="lang-select">
+                <option>English</option>
+                <option>हिन्दी (Hindi)</option>
+                <option>தமிழ் (Tamil)</option>
+                <option>తెలుగు (Telugu)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header>
+        <div class="brand-container">
+            <div class="emblem-placeholder">GOVT EMBLEM</div>
+            <div class="brand-titles">
+                <h1>GeoAgri</h1>
+                <p>National AI-Powered Precision Agricultural Advisory Portal</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+    	<ul>
+           <li><a href="index.html">Farmer Dashboard</a></li>
+           <li><a href="soil-health.html">Soil Health Data</a></li>
+           <li><a href="satellite-weather.html">Satellite & Weather Maps</a></li>
+           <li><a href="market-prices.html">Market Prices (e-NAM)</a></li>
+           <li><a href="help-support.html">Help & Support</a></li>
+       </ul>
+    </nav>
+
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <div class="container">
+
+        <!-- LEFT SIDEBAR: FARMER INPUTS -->
+        <div class="sidebar">
+            <div class="panel">
+                <div class="panel-header">Farm Location & Inputs</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select id="state">
+                                <option>Punjab</option>
+                                <option>Maharashtra</option>
+                                <option>Karnataka</option>
+                                <option>Uttar Pradesh</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="district">District</label>
+                            <select id="district">
+                                <option>Ludhiana</option>
+                                <option>Patiala</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="farm-size">Farm Size (Acres)</label>
+                            <input type="number" id="farm-size" value="2.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-type">Soil Type</label>
+                            <select id="soil-type">
+                                <option>Alluvial Soil</option>
+                                <option>Black Soil</option>
+                                <option>Red Soil</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit">Generate Advisory</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">System Integration Status</div>
+                <div class="panel-body" style="font-size: 12px;">
+                    <p><strong>Weather API:</strong> Connected (IMD)</p>
+                    <p><strong>Satellite Data:</strong> Active (ISRO Veda)</p>
+                    <p><strong>Soil Model:</strong> Health Card v2.0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT MAIN CONTENT: AI ADVISORY RESULTS -->
+        <div class="main-content">
+
+            <!-- DATA STATUS BANNER -->
+            <div class="data-status-bar">
+                <span><strong>Target Area:</strong> Ludhiana Block B | Coordinates: 30.9010° N, 75.8573° E</span>
+                <span><strong>Last Updated:</strong> Today, 06:00 AM</span>
+            </div>
+
+            <!-- RECOMMENDATIONS GRID -->
+            <div class="recommendation-grid">
+                
+                <!-- Crop Selection -->
+                <div class="card">
+                    <div class="card-title">
+                        <span>Crop Recommendation</span>
+                        <span class="status-tag">Optimal</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Recommended Crop:</span>
+                        <span class="data-value">Wheat (PBW 725)</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Expected Yield:</span>
+                        <span class="data-value">22 Quintals / Acre</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Market Demand Index:</span>
+                        <span class="data-value">High</span>
+                    </div>
+                </div>
+
+                <!-- Irrigation Management -->
+                <div class="card">
+                    <div class="card-title">
+                        <span>Irrigation Schedule</span>
+                        <span class="status-tag">Action Needed</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Next Irrigation:</span>
+                        <span class="data-value">In 2 Days (Morning)</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Water Requirement:</span>
+                        <span class="data-value">35 mm</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Soil Moisture Content:</span>
+                        <span class="data-value">18% (Low)</span>
+                    </div>
+                </div>
+
+                <!-- Fertilizer Management -->
+                <div class="card">
+                    <div class="card-title">
+                        <span>Fertiliser Optimization</span>
+                        <span class="status-tag">Scheduled</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Urea Dosage:</span>
+                        <span class="data-value">45 kg / Acre</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">DAP Dosage:</span>
+                        <span class="data-value">20 kg / Acre</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Nitrogen Status:</span>
+                        <span class="data-value">Deficient (-12%)</span>
+                    </div>
+                </div>
+
+                <!-- Pest & Disease Warning -->
+                <div class="card">
+                    <div class="card-title">
+                        <span>Pest Risk Assessment</span>
+                        <span class="status-tag">Low Risk</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Identified Threat:</span>
+                        <span class="data-value">Yellow Rust</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Risk Level:</span>
+                        <span class="data-value">12% Probability</span>
+                    </div>
+                    <div class="card-data-row">
+                        <span class="data-label">Preventative Action:</span>
+                        <span class="data-value">Monitor Leaves Weekly</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- DETAILED ACTIONABLE ADVISORY -->
+            <div class="advisory-box">
+                <h3>Detailed AI Action Plan for Next 7 Days</h3>
+                <ul class="advisory-list">
+                    <li><strong>Weather Integration:</strong> Light rainfall (4mm) predicted in 5 days. Delay scheduled pesticide spraying until after rainfall.</li>
+                    <li><strong>Satellite Vegetation Index (NDVI):</strong> Crop health index stands at 0.72, indicating healthy canopy growth in sector 3B.</li>
+                    <li><strong>Soil Care:</strong> Based on integrated soil card data, micro-nutrient zinc application is recommended along with the first dose of Urea.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>GeoAgri Portal - Designed for National Agricultural AI Advisory</p>
+        <p>Data Integrated from IMD, ISRO Soil Health Card Scheme & ICAR Crop Models</p>
+        <p>&copy; Government of India. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
